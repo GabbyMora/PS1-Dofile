@@ -26,7 +26,6 @@ pwd                           /*showed me the location of the files*/
 mkdir C:\Users\GabbyMora\Desktop
 
 
-. import delimited C:\Users\GabbyMora\Desktop\animal_tracker_merged_2016_v1.csv
 
 
 /* I attempted to download the file from Google Drive but it would not work*/
@@ -35,11 +34,14 @@ mkdir C:\Users\GabbyMora\Desktop
 
 /*https://docs.google.com/uc?id=FILE_ID&export=download*/
 
-insheet "https://docs.google.com/uc?id=0B7NINNiH_unDVEFuOV9HMHB0QlU&export=download", clear
+//breaks here, need using; and also need to drop ealier imoirt
+insheet using "https://docs.google.com/uc?id=0B7NINNiH_unDVEFuOV9HMHB0QlU&export=download", clear
 
+//this is fine
 copy "https://docs.google.com/uc?id=0B7NINNiH_unDVEFuOV9HMHB0QlU&export=download" ./downloadedAnimalTracker.csv
 
-. insheet using ./downloadedAnimalTracker.csv, clear /*do not forget to include "clear" at the end*/
+//thhis is good
+insheet using ./downloadedAnimalTracker.csv, clear /*do not forget to include "clear" at the end*/
   
 edit /*I did this so I could look at the data set*/
 
@@ -60,14 +62,15 @@ list  ppagecat
 
 sum
 
-. save Animal_Tracker_Merged.dta, replace
+save Animal_Tracker_Merged.dta, replace
 /*file C:\Users\GabbyMora\Desktop\Animal Tracker Merged.dta saved*/
 
 
-. export Animal_Tracker_Merged_Excel, replace
+export excel Animal_Tracker_Merged_Excel2, replace
 /*file Animal Tracker Merged Excel.xls saved*/
 
-. xmlsave Animal_Tracker_Merged_XML, replace
+//and remember to drop dots
+xmlsave Animal_Tracker_Merged_XML, replace
 
 clear all
 
